@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Money</title>
+</head>
+<body>
+
+  <p>Total Spend:<span><%= @total%></span></p>
+
+
+  <br>
+  <br>
+
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>Total Spend</th>
+    </tr>
+    <% @tags.each do |tag|%>
+    <tr>
+    <td><%=tag.tag_name()%></td>
+    <td><%=tag.total()%></td>
+    </tr>
+    <%end%>
+    
+  </table>
+
+  <br><br>
+
+  <a href="/my-money">All Transactions</a>
+
+
+  <%=yield%>
+
+</body>
+</html>
