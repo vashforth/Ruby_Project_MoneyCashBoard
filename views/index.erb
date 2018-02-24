@@ -1,4 +1,43 @@
+<p>Total Spend:<span><%= @total%></span></p>
 
+<br><br>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Total Spend</th>
+  </tr>
+  <% @tags.each do |tag|%>
+  <tr>
+    <td><%=tag.tag_name()%></td>
+    <td><%=tag.total()%></td>
+  </tr>
+  <%end%>
+
+</table>
+
+<br><br>
+
+<form action="/my-money" method="post">
+
+  <label for="merchant">Add Merchant</label>
+  <input style="text-transform:capitalize;" id="merchant-name"  type="text" name="merchant_name" placeholder="Add merchant here...">
+
+  <label for="tag">Select a Type</label>
+  <select name="tag_id" required>
+    <% @tags.each do |tag|%>
+    <option value="<%=tag.id%>"><%= tag.tag_name() %></option>
+    <%end%>
+  </select>
+
+  <label for="amount">Add Amount</label>
+  <input id="amount" type="text" name="amount" placeholder="Add amount here..." required>
+
+  <input type="submit" value="New Transaction">
+
+</form>
+
+<br><br><br>
 
 <table>
   <tr>
@@ -7,13 +46,13 @@
     <th>Amount</th>
   </tr>
 
-    <% @transactions.each do |transaction| %>
+  <% @transactions.each do |transaction| %>
   <tr>
     <td><%= transaction.tag()%></td>
     <td><%= transaction.merchant()%></td>
     <td><%= transaction.amount%></td>
   </tr>
-    <%end%>
+  <%end%>
 
   <tr>
     <td>Total Spend</td>

@@ -2,6 +2,7 @@ require_relative('../models/merchants')
 require_relative('../models/tags')
 require_relative('../models/transactions')
 require('pry-byebug')
+require('titleize')
 
 Transaction.delete_all()
 Tag.delete_all()
@@ -9,7 +10,7 @@ Merchant.delete_all()
 
 
 merchant1 = Merchant.new({"merchant_name" => "Tesco"})
-merchant2 = Merchant.new({"merchant_name" => "H+M"})
+merchant2 = Merchant.new({"merchant_name" => "H & M"})
 merchant3 = Merchant.new({"merchant_name" => "Pizza Express"})
 merchant4 = Merchant.new({"merchant_name" => "Holland and Barrett"})
 

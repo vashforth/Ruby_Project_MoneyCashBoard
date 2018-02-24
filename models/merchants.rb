@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require('titleize')
 
 class Merchant
 
@@ -10,12 +11,14 @@ class Merchant
   end
 
   def save()
+    return if Merchant.find_id_by_name(@merchant_name) != nil
     sql = "INSERT INTO merchants
     (
     merchant_name
     )
     VALUES
-    ($1)
+    (
+      $1)
     RETURNING *;"
     merchant = SqlRunner.run(sql, [@merchant_name])
     @id = merchant[0]['id'].to_i
@@ -27,12 +30,13 @@ class Merchant
     return merchants.map { |merchant| Merchant.new(merchant) }
   end
 
-  def Merchant.find_by_name(name)
+  def Merchant.find_id_by_name(name)
     sql = "SELECT * FROM merchants
     WHERE merchant_name = $1;"
-    result = SqlRunner.run(sql,[name])
-    merchants = result.map { |merchant| Merchant.new(merchant)}
-    return merchants.count()
+    result = SqlRunner.run(sql,[name.downcase()])
+    merchant = result.map { |merchant| Merchant.new(merchant)}
+    return nil if merchant == []
+    return merchant[0].id
   end
 
   def Merchant.delete_all()
