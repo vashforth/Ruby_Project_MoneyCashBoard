@@ -27,6 +27,14 @@ class Merchant
     return merchants.map { |merchant| Merchant.new(merchant) }
   end
 
+  def Merchant.find_by_name(name)
+    sql = "SELECT * FROM merchants
+    WHERE merchant_name = $1;"
+    result = SqlRunner.run(sql,[name])
+    merchants = result.map { |merchant| Merchant.new(merchant)}
+    return merchants.count()
+  end
+
   def Merchant.delete_all()
     sql = "DELETE FROM merchants;"
     result = SqlRunner.run(sql)

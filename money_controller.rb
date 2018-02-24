@@ -36,6 +36,7 @@ post '/my-money' do
   @merchants = Merchant.show_all()
   @total = Transaction.sum_all()
   transaction = Transaction.new(params)
+
   transaction.save()
   redirect to '/my-money/new'
 end
