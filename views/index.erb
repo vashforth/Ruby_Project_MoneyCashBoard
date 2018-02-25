@@ -1,10 +1,10 @@
 <div class= "total">
-<p class= "total">Total Spend:<span><%= @total%></span></p>
+<p class= "total">Total Spend: £<span><%= @total%></span></p>
 </div>
 
 <br><br>
 
-<table>
+<table class="totals">
   <tr>
     <th>Type</th>
     <th>Total Spend</th>
@@ -12,7 +12,7 @@
   <% @tags.each do |tag|%>
   <tr>
     <td><%=tag.tag_name()%></td>
-    <td><%=tag.total()%></td>
+    <td>£<%=tag.total()%></td>
   </tr>
   <%end%>
 
@@ -22,20 +22,20 @@
 
 <form class="form" action="/my-money" method="post">
 
-  <label for="merchant">Add Merchant</label>
+  <label for="merchant">Merchant</label>
   <input style="text-transform:capitalize;" id="merchant-name"  type="text" name="merchant_name" placeholder="Add merchant here...">
 
-  <label for="tag">Select a Type</label>
+  <label for="tag">Type</label>
   <select name="tag_id" required>
     <% @tags.each do |tag|%>
     <option value="<%=tag.id%>"><%= tag.tag_name() %></option>
     <%end%>
   </select>
 
-  <label for="amount">Add Amount</label>
+  <label for="amount">Amount</label>
   <input id="amount" type="text" name="amount" placeholder="Add amount here..." required>
 
-  <input type="submit" value="New Transaction">
+  <input type="submit" value="Add New Transaction">
 
 </form>
 
@@ -64,8 +64,8 @@
   <% @transactions.each do |transaction| %>
   <tr>
     <td><%= transaction.tag()%></td>
-    <td><%= transaction.merchant()%></td>
-    <td><%= transaction.amount%></td>
+    <td><%= transaction.merchant().capitalize%></td>
+    <td>£<%= transaction.amount%></td>
   </tr>
   <%end%>
 
