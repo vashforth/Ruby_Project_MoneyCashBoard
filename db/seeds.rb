@@ -9,10 +9,10 @@ Tag.delete_all()
 Merchant.delete_all()
 
 
-merchant1 = Merchant.new({"merchant_name" => "Tesco"})
-merchant2 = Merchant.new({"merchant_name" => "H & M"})
-merchant3 = Merchant.new({"merchant_name" => "Pizza Express"})
-merchant4 = Merchant.new({"merchant_name" => "Holland and Barrett"})
+merchant1 = Merchant.new({"merchant_name" => "tesco"})
+merchant2 = Merchant.new({"merchant_name" => "h & m"})
+merchant3 = Merchant.new({"merchant_name" => "pizza express"})
+merchant4 = Merchant.new({"merchant_name" => "holland and barrett"})
 
 merchant1.save()
 merchant2.save()

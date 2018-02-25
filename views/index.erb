@@ -1,4 +1,6 @@
-<p>Total Spend:<span><%= @total%></span></p>
+<div class= "total">
+<p class= "total">Total Spend:<span><%= @total%></span></p>
+</div>
 
 <br><br>
 
@@ -18,7 +20,7 @@
 
 <br><br>
 
-<form action="/my-money" method="post">
+<form class="form" action="/my-money" method="post">
 
   <label for="merchant">Add Merchant</label>
   <input style="text-transform:capitalize;" id="merchant-name"  type="text" name="merchant_name" placeholder="Add merchant here...">
@@ -39,12 +41,25 @@
 
 <br><br><br>
 
-<table>
+<table class = "all">
+  <thead>
   <tr>
     <th>Transaction Type</th>
     <th>Merchant</th>
     <th>Amount</th>
   </tr>
+</thead>
+
+<tfoot class = "all foot">
+  <tr>
+    <td>Total Spend</td>
+    <td></td>
+    <td><%= @total%> </td>
+  </tr>
+</tfoot>
+
+<tbody>
+
 
   <% @transactions.each do |transaction| %>
   <tr>
@@ -54,9 +69,7 @@
   </tr>
   <%end%>
 
-  <tr>
-    <td>Total Spend</td>
-    <td></td>
-    <td><%= @total%> </td>
-  </tr>
+  </tbody>
+
+
 </table>

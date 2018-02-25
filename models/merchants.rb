@@ -33,7 +33,7 @@ class Merchant
   def Merchant.find_id_by_name(name)
     sql = "SELECT * FROM merchants
     WHERE merchant_name = $1;"
-    result = SqlRunner.run(sql,[name.downcase()])
+    result = SqlRunner.run(sql,[name.downcase])
     merchant = result.map { |merchant| Merchant.new(merchant)}
     return nil if merchant == []
     return merchant[0].id
