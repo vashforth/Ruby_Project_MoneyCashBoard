@@ -11,7 +11,8 @@ class Merchant
   end
 
   def save()
-    return if Merchant.find_id_by_name(@merchant_name) != nil
+    @id = Merchant.find_id_by_name(@merchant_name)
+    return if @id != nil
     sql = "INSERT INTO merchants
     (
     merchant_name
@@ -20,7 +21,7 @@ class Merchant
     (
       $1)
     RETURNING *;"
-    merchant = SqlRunner.run(sql, [@merchant_name])
+    merchant = SqlRunner.run(sql, [@merchant_name.downcase])
     @id = merchant[0]['id'].to_i
   end
 

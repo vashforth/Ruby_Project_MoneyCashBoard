@@ -19,8 +19,8 @@ end
 post '/my-money' do
   merchant = Merchant.new(params)
   merchant.save()
-  merchant_id = Merchant.find_id_by_name(params['merchant_name'])
-  params['merchant_id'] = merchant_id
+  # merchant_id = Merchant.find_id_by_name(params['merchant_name'])
+  params['merchant_id'] = merchant.id
   transaction = Transaction.new(params)
   transaction.save()
   redirect to '/my-money'
