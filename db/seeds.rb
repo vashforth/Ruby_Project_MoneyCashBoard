@@ -27,10 +27,10 @@ tag1.save()
 tag2.save()
 tag3.save()
 
-transaction1 = Transaction.new({"amount" => 34.50, "merchant_id" => merchant3.id(), "tag_id" => tag2.id()})
-transaction2 = Transaction.new({"amount" => 7.95, "merchant_id" => merchant4.id(), "tag_id" => tag1.id()})
-transaction3 = Transaction.new({"amount" => 60.20, "merchant_id" => merchant2.id(), "tag_id" => tag3.id()})
-transaction4 = Transaction.new({"amount" => 12.79, "merchant_id" => merchant1.id(), "tag_id" => tag1.id()})
+transaction1 = Transaction.new({"amount" => 34.50, "merchant_id" => merchant3.id(), "tag_id" => tag2.id(), "trans_date" => '2017-10-30'})
+transaction2 = Transaction.new({"amount" => 7.95, "merchant_id" => merchant4.id(), "tag_id" => tag1.id(), "trans_date" => '2017-12-09'})
+transaction3 = Transaction.new({"amount" => 60.20, "merchant_id" => merchant2.id(), "tag_id" => tag3.id(), "trans_date" => '2018-04-19'})
+transaction4 = Transaction.new({"amount" => 12.79, "merchant_id" => merchant1.id(), "tag_id" => tag1.id(), "trans_date" => '2017-11-01'})
 
 
 transaction1.save()

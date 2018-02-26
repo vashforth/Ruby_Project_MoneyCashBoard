@@ -2,13 +2,14 @@ require_relative('../db/sql_runner.rb')
 
 class Transaction
 
-  attr_reader :id, :amount, :merchant_id, :tag_id
+  attr_reader :id, :amount, :merchant_id, :tag_id, :trans_date
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @amount = options['amount']
     @merchant_id = options['merchant_id'].to_i
     @tag_id = options['tag_id'].to_i
+    @trans_date = options['trans_date']
     @budget = 1500
   end
 
@@ -17,12 +18,13 @@ class Transaction
     (
       amount,
       merchant_id,
-      tag_id
+      tag_id,
+      trans_date
       )
     VALUES
-    ($1, $2, $3)
+    ($1, $2, $3, $4)
     RETURNING *;"
-    values = [@amount, @merchant_id, @tag_id]
+    values = [@amount, @merchant_id, @tag_id, @trans_date]
     transaction = SqlRunner.run(sql, values)
     @id = transaction[0]['id'].to_i
   end
@@ -62,6 +64,14 @@ class Transaction
   def Transaction.delete_all()
     sql = "DELETE FROM transactions;"
     result = SqlRunner.run(sql)
+  end
+
+  def Transaction.total_by_date(start_date, end_date)
+    sql = "SELECT SUM(amount) FROM transactions
+    WHERE trans_date BETWEEN $1 AND $2;"
+    values = [start_date.to_s, end_date.to_s]
+    total = SqlRunner.run(sql, values)
+    return total[0]['sum'].to_f
   end
 
 end

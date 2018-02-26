@@ -17,13 +17,71 @@
   <tr>
     <th>Type</th>
     <th>Total Spend</th>
+    
   </tr>
   <% @tags.each do |tag|%>
   <tr>
     <td><%=tag.tag_name()%></td>
     <td>£<%=tag.total()%></td>
+
   </tr>
   <%end%>
+
+</table>
+
+<table class="totals">
+  <tr>
+    <th>Month</th>
+    <th>Total Spend</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>£<%=Transaction.total_by_date('2018-01-01','2018-01-31')%></td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td>£<%=Transaction.total_by_date('2018-02-01','2018-02-28')%></td>
+  </tr>
+  <tr>
+    <td>March</td>
+    <td>£<%=Transaction.total_by_date('2018-03-01','2018-03-31')%></td>
+  </tr>
+  <tr>
+    <td>April</td>
+    <td>£<%=Transaction.total_by_date('2018-04-01','2018-04-30')%></td>
+  </tr>
+  <tr>
+    <td>May</td>
+    <td>£<%=Transaction.total_by_date('2018-05-01','2018-05-31')%></td>
+  </tr>
+  <tr>
+    <td>June</td>
+    <td>£<%=Transaction.total_by_date('2018-06-01','2018-06-30')%></td>
+  </tr>
+  <tr>
+    <td>July</td>
+    <td>£<%=Transaction.total_by_date('2018-07-01','2018-07-31')%></td>
+  </tr>
+  <tr>
+    <td>August</td>
+    <td>£<%=Transaction.total_by_date('2018-08-01','2018-08-31')%></td>
+  </tr>
+  <tr>
+    <td>September</td>
+    <td>£<%=Transaction.total_by_date('2018-09-01','2018-09-30')%></td>
+  </tr>
+  <tr>
+    <td>October</td>
+    <td>£<%=Transaction.total_by_date('2018-10-01','2018-10-31')%></td>
+  </tr>
+  <tr>
+    <td>November</td>
+    <td>£<%=Transaction.total_by_date('2018-11-01','2018-11-30')%></td>
+  </tr>
+  <tr>
+    <td>December</td>
+    <td>£<%=Transaction.total_by_date('2018-12-01','2018-12-31')%></td>
+  </tr>
 
 </table>
 
@@ -31,18 +89,21 @@
 
 <form class="form" action="/my-money" method="post">
 
-  <label for="merchant">Merchant</label>
+  <label for="merchant">Merchant:</label>
   <input style="text-transform:capitalize;" id="merchant-name"  type="text" name="merchant_name" placeholder="Add merchant here...">
 
-  <label for="tag">Type</label>
+  <label for="tag">Type:</label>
   <select name="tag_id" required>
     <% @tags.each do |tag|%>
     <option value="<%=tag.id%>"><%= tag.tag_name() %></option>
     <%end%>
   </select>
 
-  <label for="amount">Amount</label>
+  <label for="amount">Amount: £</label>
   <input id="amount" type="text" name="amount" placeholder="Add amount here..." required>
+
+  <label for="date">Date:</label>
+  <input id="date" type="text" name="trans_date" placeholder="2000-01-01" required>
 
   <input type="submit" value="Add New Transaction">
 
@@ -56,10 +117,12 @@
       <th>Transaction Type</th>
       <th>Merchant</th>
       <th>Amount</th>
+      <th>Date</th>
       <th>
         <form class="" action="/my-money/delete-all" method="post">
           <input type="submit" value="Delete All">
-        </form> </th>
+        </form>
+      </th>
       </tr>
     </thead>
 
@@ -79,6 +142,7 @@
         <td><%= transaction.tag()%></td>
         <td><%= transaction.merchant().capitalize%></td>
         <td>£<%= transaction.amount%></td>
+        <td><%= transaction.trans_date%></td>
         <td>
           <form action="/my-money/<%=transaction.id%>/delete" method="post">
             <input type="submit" value="Delete">
