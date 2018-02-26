@@ -9,6 +9,7 @@ class Transaction
     @amount = options['amount']
     @merchant_id = options['merchant_id'].to_i
     @tag_id = options['tag_id'].to_i
+    @budget = 1500
   end
 
   def save()
@@ -38,6 +39,12 @@ class Transaction
     WHERE id = $1;"
     merchant = SqlRunner.run(sql, [@merchant_id])
     return merchant[0]['merchant_name']
+  end
+
+  def Transaction.delete_by_id(id)
+    sql = "DELETE FROM transactions
+    WHERE id = $1;"
+    result = SqlRunner.run(sql, [id])
   end
 
   def Transaction.show_all()

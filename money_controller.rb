@@ -12,6 +12,7 @@ get '/my-money' do
   @tags = Tag.show_all()
   @merchants = Merchant.show_all()
   @total = Transaction.sum_all()
+  @budget = 1000
   erb(:index)
 end
 
@@ -19,9 +20,19 @@ end
 post '/my-money' do
   merchant = Merchant.new(params)
   merchant.save()
-  # merchant_id = Merchant.find_id_by_name(params['merchant_name'])
   params['merchant_id'] = merchant.id
   transaction = Transaction.new(params)
   transaction.save()
+  redirect to '/my-money'
+end
+
+
+post '/my-money/:id/delete' do
+  Transaction.delete_by_id(params[:id])
+  redirect to '/my-money'
+end
+
+post '/my-money/delete-all' do
+  Transaction.delete_all()
   redirect to '/my-money'
 end

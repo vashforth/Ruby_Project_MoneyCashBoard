@@ -68,7 +68,6 @@ input:hover[type=submit] {
 }
 
 div.total {
-  background-color: rgb(122, 148, 146);
   color: white;
   width: 15em;
   height: 6em;
@@ -82,6 +81,12 @@ div.total {
   font-size: 1.5em;
   }
 
+.red {
+  background-color: rgb(208, 70, 82);
+}
+.green{
+  background-color: rgb(122, 148, 146);
+}
 
 p.total {
   width: 0.1em
