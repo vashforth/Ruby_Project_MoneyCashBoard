@@ -14,7 +14,7 @@ end
 
 get '/my-money/transaction/:id/edit' do
   @tags = Tag.show_all
-  @transcation = Transaction.find_by_id(params[:id].to_i)
+  @transaction = Transaction.find_by_id(params[:id].to_i)
   erb(:transaction_edit)
 end
 
@@ -55,6 +55,41 @@ get '/my-money/:month/show-month' do
   @transactions = Transaction.show_by_month(params[:month])
   erb(:dates)
 end
+
+get '/my-money/weekly/show' do
+    current_week = Date.today.cweek
+    current_year = Date.today.year
+    current_week_date = Date.commercial(current_year, current_week)
+    next_week_date = Date.commercial(current_year, current_week + 1) - 1
+    @tags = Tag.show_all
+    @transactions = Transaction.show_by_date(current_week_date, next_week_date)
+    erb(:"weekly/show")
+end
+
+get '/my-money/monthly/show' do
+    current_month = Date.today.month
+    current_year = Date.today.year
+    current_month_date = Date.new(current_year, current_month)
+    next_month_date = Date.new(current_year, current_month + 1) - 1
+    @tags = Tag.show_all
+    @transactions = Transaction.show_by_date(current_month_date, next_month_date)
+    erb(:"monthly/show")
+end
+
+get '/my-money/yearly/show' do
+    current_year = Date.today.year
+    current_year_date = Date.new(current_year)
+    next_year_date = Date.new(current_year + 1) - 1
+    @tags = Tag.show_all
+    @transactions = Transaction.show_by_date(current_year_date, next_year_date)
+    erb(:"yearly/show")
+end
+
+get '/my-money/grouped-totals/show' do
+  @tags = Tag.show_all
+  erb(:"grouped-totals/show")
+end
+
 
 post '/my-money' do
   merchant = Merchant.new(params)

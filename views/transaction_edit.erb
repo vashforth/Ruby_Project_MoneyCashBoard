@@ -1,1 +1,22 @@
-<input type="text" value="<%= @transcation.amount %>" />
+
+<form class="form" action="/my-money" method="post">
+
+  <label for="merchant">Merchant:</label>
+  <input  id="merchant-name" style="text-transform:capitalize;" type="text"  value="<%= @transaction.merchant() %>" name="merchant_name">
+
+  <label for="tag">Type:</label>
+  <select name="tag_id" required>
+    <% @tags.each do |tag|%>
+    <option value="<%=tag.id%>"><%= tag.tag_name() %></option>
+    <%end%>
+  </select>
+
+  <label for="amount">Amount: £</label>
+  <input id="amount" type="text" name="amount" value="<%=@transaction.amount()%>">
+
+  <label for="date">Date:</label>
+  <input id="date" type="text" name="trans_date" value="<%=@transaction.trans_date()%>">
+
+  <input type="submit" value="Change Transaction">
+
+</form>

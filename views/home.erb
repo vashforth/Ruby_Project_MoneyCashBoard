@@ -4,11 +4,13 @@
  <div class= "total green">
    <p class= "total">Total Spend: £<%= @cweek_total%></p>
    <p class= "budget">Budget: £<%= @budget.weekly%> </p>
+   <a href="/my-money/weekly/show">View Transactions</a>
  </div>
  <%else%>
 <div class= "total red">
    <p class= "total">Total Spend: £<%= @cweek_total%></p>
    <p class= "budget">Budget: £<%= @budget.weekly%> </p>
+   <a href="/my-money/weekly/show">View Transactions</a>
  </div>
 <%end%>
 
@@ -16,11 +18,13 @@
 <div class= "total green">
   <p class= "total">Total Spend: £<%= @cmonth_total%></p>
   <p class= "budget">Budget: £<%= @budget.monthly%> </p>
+  <a href="/my-money/monthly/show">View Transactions</a>
 </div>
 <%else%>
 <div class= "total red">
   <p class= "total">Total Spend: £<%= @cmonth_total%></p>
   <p class= "budget">Budget: £<%= @budget.monthly%> </p>
+  <a href="/my-money/monthly/show">View Transactions</a>
 </div>
 <%end%>
 
@@ -28,84 +32,12 @@
 <div class= "total green">
   <p class= "total">Total Spend: £<%= @cyear_total%></p>
   <p class= "budget">Budget: £<%= @budget.yearly%> </p>
+  <a href="/my-money/yearly/show">View Transactions</a>
 </div>
 <%else%>
 <div class= "total red">
   <p class= "total">Total Spend: £<%= @cyear_total%></p>
   <p class= "budget">Budget: £<%= @budget.yearly%> </p>
+  <a href="/my-money/yearly/show">View Transactions</a>
 </div>
 <%end%>
-
-
-<br><br>
-
-<table class="totals">
-  <tr>
-    <th>Type</th>
-    <th>Total Spend</th>
-    <th>Transactions</th>
-  </tr>
-  <% @tags.each do |tag|%>
-  <tr>
-    <td><%=tag.tag_name()%></td>
-    <td>£<%=tag.total()%></td>
-    <td> <a href="/my-money/<%=tag.id%>">View</a></td>
-  </tr>
-  <%end%>
-
-</table>
-
-<table class="totals">
-  <tr>
-    <th>Month</th>
-    <th>Total Spend</th>
-    <th>Transactions</th>
-  </tr>
-  <tr>
-    <td>January</td>
-    <td>£<%=Transaction.total_by_date('2018-01-01','2018-01-31')%></td>
-    <td> <a href="/my-money/01/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>February</td><td>£<%=Transaction.total_by_date('2018-02-01','2018-02-28')%></td>
-    <td> <a href="/my-money/02/show-month">View</a> </td></tr>
-  <tr>
-    <td>March</td><td>£<%=Transaction.total_by_date('2018-03-01','2018-03-31')%></td>
-  <td> <a href="/my-money/03/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>April</td><td>£<%=Transaction.total_by_date('2018-04-01','2018-04-30')%></td>
-  <td> <a href="/my-money/04/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>May</td><td>£<%=Transaction.total_by_date('2018-05-01','2018-05-31')%></td>
-  <td> <a href="/my-money/05/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>June</td><td>£<%=Transaction.total_by_date('2018-06-01','2018-06-30')%></td>
-  <td> <a href="/my-money/06/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>July</td><td>£<%=Transaction.total_by_date('2018-07-01','2018-07-31')%></td>
-    <td> <a href="/my-money/07/show-month">View</a> </td></tr>
-  <tr>
-    <td>August</td><td>£<%=Transaction.total_by_date('2018-08-01','2018-08-31')%></td>
-  <td> <a href="/my-money/08/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>September</td><td>£<%=Transaction.total_by_date('2018-09-01','2018-09-30')%></td>
-  <td> <a href="/my-money/09/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>October</td><td>£<%=Transaction.total_by_date('2018-10-01','2018-10-31')%></td>
-  <td> <a href="/my-money/10/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>November</td><td>£<%=Transaction.total_by_date('2018-11-01','2018-11-30')%></td>
-  <td> <a href="/my-money/11/show-month">View</a> </td>
-  </tr>
-  <tr>
-    <td>December</td><td>£<%=Transaction.total_by_date('2018-12-01','2018-12-31')%></td>
-    <td> <a href="/my-money/12/show-month">View</a> </td></tr>
-
-</table>
