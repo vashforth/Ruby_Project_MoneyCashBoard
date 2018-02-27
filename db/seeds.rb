@@ -1,9 +1,11 @@
 require_relative('../models/merchants')
 require_relative('../models/tags')
 require_relative('../models/transactions')
+require_relative('../models/budget')
 require('pry-byebug')
 require('titleize')
 
+Budget.delete_all()
 Transaction.delete_all()
 Tag.delete_all()
 Merchant.delete_all()
@@ -31,13 +33,16 @@ transaction1 = Transaction.new({"amount" => 34.50, "merchant_id" => merchant3.id
 transaction2 = Transaction.new({"amount" => 7.95, "merchant_id" => merchant4.id(), "tag_id" => tag1.id(), "trans_date" => '2017-12-09'})
 transaction3 = Transaction.new({"amount" => 60.20, "merchant_id" => merchant2.id(), "tag_id" => tag3.id(), "trans_date" => '2018-04-19'})
 transaction4 = Transaction.new({"amount" => 12.79, "merchant_id" => merchant1.id(), "tag_id" => tag1.id(), "trans_date" => '2017-11-01'})
-
+transaction5 = Transaction.new({"amount" => 15.45, "merchant_id" => merchant4.id(), "tag_id" => tag3.id(), "trans_date" => '2017-10-15'})
 
 transaction1.save()
 transaction2.save()
 transaction3.save()
 transaction4.save()
+transaction5.save()
 
+budget = Budget.new({"weekly" => 500.00, "monthly" => 2000.00, "yearly" => 24000.00})
+budget.save()
 
 binding.pry
 

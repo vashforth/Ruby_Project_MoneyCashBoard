@@ -1,3 +1,4 @@
+DROP TABLE budget;
 DROP TABLE transactions;
 DROP TABLE tags;
 DROP TABLE merchants;
@@ -18,4 +19,11 @@ CREATE TABLE transactions (
   merchant_id INT4 REFERENCES merchants,
   tag_id INT4 REFERENCES tags,
   trans_date DATE
+);
+
+CREATE TABLE budget (
+  id SERIAL4 PRIMARY KEY,
+  weekly NUMERIC,
+  monthly NUMERIC,
+  yearly NUMERIC
 );
