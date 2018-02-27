@@ -23,7 +23,8 @@
         <td>£<%= transaction.amount%></td>
         <td><%= transaction.trans_date%></td>
         <td>
-          <form action="/my-money/<%=transaction.id%>/delete" method="post">
+          <form action="/my-money/show/<%=transaction.id%>/delete" method="post">
+            <input type="text" hidden name="tag_id" value="<%= transaction.tag_id %>" />
             <input type="submit" value="Delete">
           </form>
         </td>

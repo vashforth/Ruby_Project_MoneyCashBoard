@@ -10,7 +10,6 @@ class Transaction
     @merchant_id = options['merchant_id'].to_i
     @tag_id = options['tag_id'].to_i
     @trans_date = options['trans_date']
-    @budget = 1500
 
   end
 
@@ -28,6 +27,15 @@ class Transaction
     values = [@amount, @merchant_id, @tag_id, @trans_date]
     transaction = SqlRunner.run(sql, values)
     @id = transaction[0]['id'].to_i
+  end
+
+  def Transaction.find_by_id(id)
+    sql = "SELECT * FROM transactions
+    WHERE id = $1;"
+    result = SqlRunner.run(sql, [id.to_i])
+    return nil if result.count == 0
+    budget = Transaction.new(result[0])
+    return budget
   end
 
   def tag()

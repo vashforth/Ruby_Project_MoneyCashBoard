@@ -36,13 +36,26 @@ class Budget
     WHERE id = $4;"
     values = [@weekly, @monthly, @yearly, @id]
     result = SqlRunner.run(sql, values)
+  end
 
+  def Budget.find_by_id(id)
+    sql = "SELECT * FROM budget
+    WHERE id = $1;"
+    result = SqlRunner.run(sql, [id.to_i])
+    return nil if result.count == 0
+    budget = Budget.new(result[0])
+    return budget
   end
 
   def Budget.delete_all()
     sql = "DELETE FROM budget;"
     result = SqlRunner.run(sql)
+  end
 
+  def Budget.show_all()
+    sql = "SELECT * FROM budget;"
+    budget = SqlRunner.run(sql)
+    return Budget.new(budget[0])
   end
 
 
