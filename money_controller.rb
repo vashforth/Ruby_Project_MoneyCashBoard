@@ -19,10 +19,22 @@ get '/my-money/transaction/:id/edit' do
 end
 
 get '/my-money' do
+  current_week = Date.today.cweek
+  current_month = Date.today.month
+  current_year = Date.today.year
+  current_week_date = Date.commercial(current_year, current_week)
+  next_week_date = Date.commercial(current_year, current_week + 1) - 1
+  current_month_date = Date.new(current_year, current_month)
+  next_month_date = Date.new(current_year, current_month + 1) - 1
+  current_year_date = Date.new(current_year)
+  next_year_date = Date.new(current_year + 1) - 1
   @transactions = Transaction.show_all()
   @tags = Tag.show_all()
   @merchants = Merchant.show_all()
-  @total = Transaction.sum_all()
+  @cweek_total = Transaction.total_by_date(current_week_date, next_week_date)
+  @cmonth_total = Transaction.total_by_date(current_month_date, next_month_date)
+  @cyear_total = Transaction.total_by_date(current_year_date, next_year_date)
+  @budget = Budget.show_all
   erb(:home)
 end
 

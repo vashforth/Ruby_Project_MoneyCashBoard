@@ -1,5 +1,42 @@
 
 
+ <%if @cweek_total < @budget.weekly%>
+ <div class= "total green">
+   <p class= "total">Total Spend: £<%= @cweek_total%></p>
+   <p class= "budget">Budget: £<%= @budget.weekly%> </p>
+ </div>
+ <%else%>
+<div class= "total red">
+   <p class= "total">Total Spend: £<%= @cweek_total%></p>
+   <p class= "budget">Budget: £<%= @budget.weekly%> </p>
+ </div>
+<%end%>
+
+<%if @cmonth_total < @budget.monthly%>
+<div class= "total green">
+  <p class= "total">Total Spend: £<%= @cmonth_total%></p>
+  <p class= "budget">Budget: £<%= @budget.monthly%> </p>
+</div>
+<%else%>
+<div class= "total red">
+  <p class= "total">Total Spend: £<%= @cmonth_total%></p>
+  <p class= "budget">Budget: £<%= @budget.monthly%> </p>
+</div>
+<%end%>
+
+<%if @cyear_total < @budget.yearly%>
+<div class= "total green">
+  <p class= "total">Total Spend: £<%= @cyear_total%></p>
+  <p class= "budget">Budget: £<%= @budget.yearly%> </p>
+</div>
+<%else%>
+<div class= "total red">
+  <p class= "total">Total Spend: £<%= @cyear_total%></p>
+  <p class= "budget">Budget: £<%= @budget.yearly%> </p>
+</div>
+<%end%>
+
+
 <br><br>
 
 <table class="totals">

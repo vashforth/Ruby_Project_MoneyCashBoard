@@ -5,9 +5,9 @@ class Budget
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @weekly = options['weekly']
-    @monthly = options['monthly']
-    @yearly = options['yearly']
+    @weekly = options['weekly'].to_f
+    @monthly = options['monthly'].to_f
+    @yearly = options['yearly'].to_f
   end
 
   def save()

@@ -81,6 +81,15 @@ class Transaction
     return transactions.map { |transaction| Transaction.new(transaction) }
   end
 
+  # def Transaction.sum_by_cmonth(month)
+  #   current_year = Date.today.year
+  #   sql ="SELECT SUM(amount) FROM transactions
+  #   WHERE trans_date BETWEEN $1 AND $2;"
+  #   values = [Date.new(current_year, current_month), (Date.new(current_year.to_i, current_month.to_i + 1) - 1)]
+  #   sum = SqlRunner.run(sql, values)
+  #   return sum
+  # end
+
   def Transaction.show_current_month()
     current_year = Date.today.year
     current_month = Date.today.month
