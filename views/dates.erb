@@ -1,20 +1,55 @@
+<form class="new" action="/my-money" method="post">
+
+  <label for="merchant">Merchant:</label>
+  <input style="text-transform:capitalize;" id="merchant-name"  type="text" name="merchant_name" placeholder="Add merchant here...">
+
+  <label for="tag">Type:</label>
+  <select name="tag_id" required>
+    <% @tags.each do |tag|%>
+    <option value="<%=tag.id%>"><%= tag.tag_name() %></option>
+    <%end%>
+  </select>
+
+  <label for="amount">Amount: £</label>
+  <input id="amount" type="text" name="amount" placeholder="Add amount here..." required>
+
+  <label for="date">Date:</label>
+  <input id="date" type="date" name="trans_date" value="<%=Date.today%>" required>
+
+  <input type="submit" value="Add New Transaction">
+
+</form>
 
 <table class = "all">
   <thead>
     <tr>
-      <th>Transaction Type</th>
-      <th>Merchant</th>
-      <th>Amount</th>
-      <th>Date</th>
-      <th>
+      <th class="type">Transaction Type</th>
+      <th class="merchant">Merchant</th>
+      <th class="amount">Amount</th>
+      <th class="date">Date</th>
+      <th >Edit</th>
+      <th class="delete">
         <form class="" action="/my-money/delete-all" method="post">
-          <input type="submit" value="Delete All">
+          <input class="delete" type="submit" value="Delete All">
         </form>
       </th>
       </tr>
     </thead>
 
+    <tfoot>
+      <tr class="foot">
+        <td class="foot">Total Spend</td>
+        <td></td>
+        <td class="foot-total">£<%= @total%></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
+
     <tbody>
+
+
       <% @transactions.each do |transaction| %>
       <tr>
         <td><%= transaction.tag()%></td>
@@ -22,12 +57,19 @@
         <td>£<%= '%.2f' % transaction.amount%></td>
         <td><%= transaction.trans_date%></td>
         <td>
-          <form action="/my-money/<%=transaction.id%>/delete" method="post">
-            <input type="submit" value="Delete">
+          <a class="edit" href="/my-money/transaction/<%=transaction.id%>/edit"><i class="far fa-edit"></i></a>
+        </td>
+        <td>
+          <form class="button"  action="/my-money/all/<%=transaction.id%>/delete" method="post">
+            <input type="text" hidden name="tag_id" value="<%= transaction.tag_id %>" />
+            <input class="delete" type="submit" class="search" value=""><i class="fas fa-trash-alt"></i>
           </form>
         </td>
+
       </tr>
       <%end%>
 
     </tbody>
+
+
   </table>

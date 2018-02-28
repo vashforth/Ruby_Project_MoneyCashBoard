@@ -1,3 +1,25 @@
+<form class="new" action="/my-money" method="post">
+
+  <label for="merchant">Merchant:</label>
+  <input style="text-transform:capitalize;" id="merchant-name"  type="text" name="merchant_name" placeholder="Add merchant here...">
+
+  <label for="tag">Type:</label>
+  <select name="tag_id" required>
+    <% @tags.each do |tag|%>
+    <option value="<%=tag.id%>"><%= tag.tag_name() %></option>
+    <%end%>
+  </select>
+
+  <label for="amount">Amount: £</label>
+  <input id="amount" type="text" name="amount" placeholder="Add amount here..." required>
+
+  <label for="date">Date:</label>
+  <input id="date" type="date" name="trans_date" value="<%=Date.today%>" required>
+
+  <input type="submit" value="Add New Transaction">
+
+</form>
+
 <table class="totals">
   <tr>
     <th>Type</th>

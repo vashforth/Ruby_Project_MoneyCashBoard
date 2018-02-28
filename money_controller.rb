@@ -40,6 +40,7 @@ end
 
 get '/my-money/index' do
   @transactions = Transaction.show_all()
+  @total = Transaction.sum_all()
   @tags = Tag.show_all()
   erb(:index)
 end
