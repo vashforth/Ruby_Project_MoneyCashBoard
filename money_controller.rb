@@ -48,12 +48,14 @@ end
 get '/my-money/:tag_id' do
   @tags = Tag.show_all()
   @transactions = Transaction.show_by_type(params[:tag_id])
+  @total = Transaction.sum_by_type(params[:tag_id])
   erb(:show)
 end
 
 get '/my-money/:month/show-month' do
   @tags = Tag.show_all()
   @transactions = Transaction.show_by_month(params[:month])
+  @total = Transaction.sum_by_transactions(@transactions)
   erb(:dates)
 end
 
@@ -64,6 +66,7 @@ get '/my-money/weekly/show' do
     next_week_date = Date.commercial(current_year, current_week + 1) - 1
     @tags = Tag.show_all
     @transactions = Transaction.show_by_date(current_week_date, next_week_date)
+    @total = Transaction.sum_by_transactions(@transactions)
     erb(:"weekly/show")
 end
 
@@ -74,6 +77,7 @@ get '/my-money/monthly/show' do
     next_month_date = Date.new(current_year, current_month + 1) - 1
     @tags = Tag.show_all
     @transactions = Transaction.show_by_date(current_month_date, next_month_date)
+    @total = Transaction.sum_by_transactions(@transactions)
     erb(:"monthly/show")
 end
 
@@ -83,6 +87,7 @@ get '/my-money/yearly/show' do
     next_year_date = Date.new(current_year + 1) - 1
     @tags = Tag.show_all
     @transactions = Transaction.show_by_date(current_year_date, next_year_date)
+    @total = Transaction.sum_by_transactions(@transactions)
     erb(:"yearly/show")
 end
 

@@ -29,15 +29,6 @@ class Transaction
     @id = transaction[0]['id'].to_i
   end
 
-  def Transaction.find_by_id(id)
-    sql = "SELECT * FROM transactions
-    WHERE id = $1;"
-    result = SqlRunner.run(sql, [id.to_i])
-    return nil if result.count == 0
-    budget = Transaction.new(result[0])
-    return budget
-  end
-
   def tag()
     sql = "SELECT * FROM tags
     WHERE id = $1;"
@@ -73,6 +64,13 @@ class Transaction
     return transactions.map { |transaction| Transaction.new(transaction)  }
   end
 
+  def Transaction.sum_by_type(id)
+    transactions = Transaction.show_by_type(id)
+    amounts = transactions.map { |transaction| transaction.amount  }
+    total_amount = amounts.inject {|sum, n| sum + n }
+    return '%.2f' % total_amount.to_f
+  end
+
   def Transaction.show_by_month(month)
     current_year = Date.today.year
     sql = "SELECT * FROM transactions
@@ -82,6 +80,12 @@ class Transaction
     transactions = SqlRunner.run(sql, values)
     return nil if transactions == nil
     return transactions.map { |transaction| Transaction.new(transaction) }
+  end
+
+  def Transaction.sum_by_transactions(transactions)
+    amounts = transactions.map { |transaction| transaction.amount  }
+    total_amount = amounts.inject {|sum, n| sum + n }
+    return '%.2f' % total_amount.to_f
   end
 
   def Transaction.show_current_month()
@@ -144,6 +148,15 @@ class Transaction
     values = [start_date.to_s, end_date.to_s]
     transactions =SqlRunner.run(sql, values)
     return transactions.map { |transaction| Transaction.new(transaction) }
+  end
+
+  def Transaction.find_by_id(id)
+    sql = "SELECT * FROM transactions
+    WHERE id = $1;"
+    result = SqlRunner.run(sql, [id.to_i])
+    return nil if result.count == 0
+    budget = Transaction.new(result[0])
+    return budget
   end
 
 end

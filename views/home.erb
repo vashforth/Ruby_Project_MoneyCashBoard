@@ -14,52 +14,52 @@
   <input id="amount" type="text" name="amount" placeholder="Add amount here..." required>
 
   <label for="date">Date:</label>
-  <input id="date" type="date" name="trans_date" value="<%=Date.today%>" required>
+  <input id="date" type="date" name="trans_date" placeholder="<%=Date.today%>" required>
 
   <input type="submit" value="Add New Transaction">
 
 </form>
 
-<div class="totals">
+<div class="totals-home">
 
  <%if @cweek_total < @budget.weekly%>
  <div class= "total green">
-   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i%></p>
-   <p class= "budget-text">My budget </p> <p class="budget"> £<%= @budget.weekly.to_i%> </p>
+   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
+   <p class= "budget-text">My budget </p> <p class="budget"> £<%= @budget.weekly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
    <a class="button" href="/my-money/weekly/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
  </div>
  <%else%>
 <div class= "total red">
-   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i%></p>
-   <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.weekly.to_i%> </p>
+   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
+   <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.weekly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
    <a class="button" href="/my-money/weekly/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
  </div>
 <%end%>
 
 <%if @cmonth_total < @budget.monthly%>
 <div class= "total green">
-  <p class= "total-text">My month spend</p><p class="total">£<%= @cmonth_total.to_i%></p>
-  <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i%> </p>
+  <p class= "total-text">My month spend</p><p class="total">£<%= @cmonth_total.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
+  <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
   <a class="button" href="/my-money/monthly/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
 </div>
 <%else%>
 <div class= "total red">
-  <p class= "total-text">My month spend</p> <p class="total">£<%= @cmonth_total.to_i%></p>
-  <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i%> </p>
+  <p class= "total-text">My month spend</p> <p class="total">£<%= @cmonth_total.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
+  <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
   <a class="button" href="/my-money/monthly/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
 </div>
 <%end%>
 
 <%if @cyear_total < @budget.yearly%>
 <div class= "total green">
-  <p class= "total-text">My year spend</p>  <p class="total">£<%= @cyear_total.to_i%></p>
-  <p class= "budget-text">My budget</p>  <p class="budget">£<%= @budget.yearly.to_i%> </p>
+  <p class= "total-text">My year spend</p>  <p class="total">£<%= @cyear_total.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
+  <p class= "budget-text">My budget</p>  <p class="budget">£<%= @budget.yearly.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
   <a class="button" href="/my-money/yearly/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
 </div>
 <%else%>
 <div class= "total red">
-  <p class= "total-text">My year spend:</p> <p class="total">£<%= @cyear_total%></p>
-  <p class= "budget-text">My budget:</p> <p class="budget">£<%= @budget.yearly%> </p>
+  <p class= "total-text">My year spend:</p> <p class="total">£<%= @cyear_total.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
+  <p class= "budget-text">My budget:</p> <p class="budget">£<%= @budget.yearly.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
   <a class="button" href="/my-money/yearly/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
 </div>
 <%end%>
