@@ -1,43 +1,46 @@
 
+<div class="totals">
 
  <%if @cweek_total < @budget.weekly%>
  <div class= "total green">
-   <p class= "total">Total Spend: £<%= @cweek_total%></p>
-   <p class= "budget">Budget: £<%= @budget.weekly%> </p>
-   <a href="/my-money/weekly/show">View Transactions</a>
+   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i%></p>
+   <p class= "budget-text">My budget </p> <p class="budget"> £<%= @budget.weekly.to_i%> </p>
+   <a class="button" href="/my-money/weekly/show">View Transactions</a>
  </div>
  <%else%>
 <div class= "total red">
-   <p class= "total">Total Spend: £<%= @cweek_total%></p>
-   <p class= "budget">Budget: £<%= @budget.weekly%> </p>
-   <a href="/my-money/weekly/show">View Transactions</a>
+   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i%></p>
+   <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.weekly.to_i%> </p>
+   <a class="button" href="/my-money/weekly/show">View Transactions</a>
  </div>
 <%end%>
 
 <%if @cmonth_total < @budget.monthly%>
 <div class= "total green">
-  <p class= "total">Total Spend: £<%= @cmonth_total%></p>
-  <p class= "budget">Budget: £<%= @budget.monthly%> </p>
-  <a href="/my-money/monthly/show">View Transactions</a>
+  <p class= "total-text">My month spend</p><p class="total">£<%= @cmonth_total.to_i%></p>
+  <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i%> </p>
+  <a class="button" href="/my-money/monthly/show">View Transactions</a>
 </div>
 <%else%>
 <div class= "total red">
-  <p class= "total">Total Spend: £<%= @cmonth_total%></p>
-  <p class= "budget">Budget: £<%= @budget.monthly%> </p>
-  <a href="/my-money/monthly/show">View Transactions</a>
+  <p class= "total-text">My month spend</p> <p class="total">£<%= @cmonth_total.to_i%></p>
+  <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i%> </p>
+  <a class="button" href="/my-money/monthly/show">View Transactions</a>
 </div>
 <%end%>
 
 <%if @cyear_total < @budget.yearly%>
 <div class= "total green">
-  <p class= "total">Total Spend: £<%= @cyear_total%></p>
-  <p class= "budget">Budget: £<%= @budget.yearly%> </p>
-  <a href="/my-money/yearly/show">View Transactions</a>
+  <p class= "total-text">My year spend</p>  <p class="total">£<%= @cyear_total.to_i%></p>
+  <p class= "budget-text">My budget</p>  <p class="budget">£<%= @budget.yearly.to_i%> </p>
+  <a class="button" href="/my-money/yearly/show">View Transactions</a>
 </div>
 <%else%>
 <div class= "total red">
-  <p class= "total">Total Spend: £<%= @cyear_total%></p>
-  <p class= "budget">Budget: £<%= @budget.yearly%> </p>
-  <a href="/my-money/yearly/show">View Transactions</a>
+  <p class= "total-text">My year spend:</p> <p class="total">£<%= @cyear_total%></p>
+  <p class= "budget-text">My budget:</p> <p class="budget">£<%= @budget.yearly%> </p>
+  <a class="button" href="/my-money/yearly/show">View Transactions</a>
 </div>
 <%end%>
+
+</div>

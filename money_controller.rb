@@ -31,9 +31,9 @@ get '/my-money' do
   @transactions = Transaction.show_all()
   @tags = Tag.show_all()
   @merchants = Merchant.show_all()
-  @cweek_total = Transaction.total_by_date(current_week_date, next_week_date)
-  @cmonth_total = Transaction.total_by_date(current_month_date, next_month_date)
-  @cyear_total = Transaction.total_by_date(current_year_date, next_year_date)
+  @cweek_total = Transaction.total_by_date(current_week_date, next_week_date).to_f
+  @cmonth_total = Transaction.total_by_date(current_month_date, next_month_date).to_f
+  @cyear_total = Transaction.total_by_date(current_year_date, next_year_date).to_f
   @budget = Budget.show_all
   erb(:home)
 end

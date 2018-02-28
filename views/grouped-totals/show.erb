@@ -7,7 +7,7 @@
   <% @tags.each do |tag|%>
   <tr>
     <td><%=tag.tag_name()%></td>
-    <td>£<%=tag.total()%></td>
+    <td>£<%= tag.total()%></td>
     <td> <a href="/my-money/<%=tag.id%>">View</a></td>
   </tr>
   <%end%>

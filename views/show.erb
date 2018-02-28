@@ -29,7 +29,7 @@
       <tr>
         <td><%= transaction.tag()%></td>
         <td><%= transaction.merchant().capitalize%></td>
-        <td>£<%= transaction.amount%></td>
+        <td>£<%= '%.2f' % transaction.amount%></td>
         <td><%= transaction.trans_date%></td>
         <td>
           <a href="/my-money/transaction/<%=transaction.id%>/edit"> Edit </a>

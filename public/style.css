@@ -40,9 +40,15 @@ tr:hover {background-color: rgb(205, 213, 218)}
 
 form {
   width: 100%;
+  height: 3em;
+  background-color: rgb(186, 230, 223);
   display: flex;
   justify-content: space-between;
-  /* font-family: monospace; */
+  align-items: center;
+}
+
+form.input {
+  margin: 10em;
 }
 
 label {
@@ -61,7 +67,7 @@ input, select{
 }
 
 input[type=submit] {
-  background-color: rgb(250, 200, 116);
+  background-color: rgb(249, 185, 77);
   color: white;
   cursor: pointer;
 }
@@ -70,18 +76,20 @@ input:hover[type=submit] {
   background-color: rgb(177, 165, 138);
 }
 
+
+div.totals {
+  display: flex;
+  justify-content: space-between;
+}
+
 div.total {
   color: white;
-  width: 15em;
-  height: 6em;
-  align-items: center;
+  width: 32%;
+  height: 18em;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  float: right;
-  margin: 1em;
-  font-size: 1.5em;
+  text-align: center;
+  margin-top: 1em;
+  padding-top: 3em;
   }
 
 .red {
@@ -91,22 +99,66 @@ div.total {
   background-color: rgb(122, 148, 146);
 }
 
+p.total-text {
+  width: 0.1em
+  align: center;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+}
+
 p.total {
   width: 0.1em
-  text-position: center;
-  font-size: 1.3em;
+  align: center;
+  font-size: 4em;
   text-align: center;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
 }
+
+p.budget-text {
+  width: 0.1em
+  text-position: center;
+  font-size: 1em;
+  text-align: center;
+  margin: 0 auto;
+  /* margin-bottom: 0.5em; */
+}
+
+p.budget {
+  width: 0.1em
+  text-position: center;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+a.button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: rgb(249, 185, 77);
+  border-radius: 5px;
+  width: 10em;
+  height: 2em;
+  text-align: center;
+  line-height: 200%;
+  color: white;
+}
+
+a.button:hover {
+  background-color: rgb(240, 222, 176);
+}
+
 
 header {
   height: max-content;
   margin: 0;
   background-image: url(1225_piggy-bank-1000x600.jpg);
-  opacity: 0.25;
+  /* opacity: 0.25; */
   background-size: cover;
   background-repeat: no-repeat;
-
-
 }
 
 li {
@@ -122,7 +174,9 @@ h1 {
   margin-top: 0;
   font-weight: bolder;
   letter-spacing: 3px;
-  font-size: 5em;
+  font-size: 8em;
+  color: white;
+  /* font-family: AvantGarde; */
 }
 
 /* form {

@@ -6,7 +6,7 @@ class Transaction
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @amount = options['amount']
+    @amount = options['amount'].to_f
     @merchant_id = options['merchant_id'].to_i
     @tag_id = options['tag_id'].to_i
     @trans_date = options['trans_date']
@@ -121,7 +121,7 @@ class Transaction
   def Transaction.sum_all()
     sql = "SELECT SUM(amount) FROM transactions;"
     total = SqlRunner.run(sql)
-    return total[0]['sum'].to_f
+    return '%.2f' % total[0]['sum'].to_f
   end
 
   def Transaction.delete_all()
@@ -134,7 +134,7 @@ class Transaction
     WHERE trans_date BETWEEN $1 AND $2;"
     values = [start_date.to_s, end_date.to_s]
     total = SqlRunner.run(sql, values)
-    return total[0]['sum'].to_f
+    return '%.2f' % total[0]['sum'].to_f
   end
 
   def Transaction.show_by_date(start_date, end_date)
