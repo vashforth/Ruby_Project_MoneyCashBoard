@@ -5,9 +5,10 @@
   <input  id="merchant-name" style="text-transform:capitalize;" type="text"  value="<%= @transaction.merchant() %>" name="merchant_name">
 
   <label for="tag">Type:</label>
-  <select name="tag_id" required>
+  <select id="tag-select" name="tag_id" required>
     <% @tags.each do |tag|%>
-    <option value="<%=tag.id%>"><%= tag.tag_name() %></option>
+    <option <%= "selected" if @transaction.tag_id == tag.id.to_i%>
+      value="<%=tag.id%>"><%=tag.tag_name%></option>
     <%end%>
   </select>
 

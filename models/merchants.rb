@@ -3,7 +3,8 @@ require('titleize')
 
 class Merchant
 
-  attr_reader :id, :merchant_name
+  attr_reader :id
+  attr_accessor :merchant_name
 
   def initialize(options)
     @id = options['id'].to_i if options['id']

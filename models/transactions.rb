@@ -4,10 +4,10 @@ class Transaction
 
   attr_accessor  :amount, :merchant_id, :tag_id, :trans_date
   attr_reader :id
-  
+
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @amount = options['amount']
+    @amount = options['amount'].to_f
     @merchant_id = options['merchant_id'].to_i
     @tag_id = options['tag_id'].to_i
     @trans_date = options['trans_date']
@@ -86,13 +86,6 @@ class Transaction
     return transactions.map { |transaction| Transaction.new(transaction)  }
   end
 
-  def Transaction.sum_by_type(id)
-    transactions = Transaction.show_by_type(id)
-    amounts = transactions.map { |transaction| transaction.amount  }
-    total_amount = amounts.inject {|sum, n| sum + n }
-    return '%.2f' % total_amount.to_f
-  end
-
   def Transaction.show_by_month(month)
     current_year = Date.today.year
     sql = "SELECT * FROM transactions
@@ -106,48 +99,10 @@ class Transaction
 
   def Transaction.sum_by_transactions(transactions)
     amounts = transactions.map { |transaction| transaction.amount  }
+    p amounts
     total_amount = amounts.inject {|sum, n| sum + n }
+    p total_amount
     return '%.2f' % total_amount.to_f
-  end
-
-  def Transaction.show_current_month()
-    current_year = Date.today.year
-    current_month = Date.today.month
-    sql = "SELECT * FROM transactions
-    WHERE trans_date BETWEEN $1 AND $2
-    ORDER BY trans_date DESC;"
-    values = [Date.new(current_year, current_month), (Date.new(current_year.to_i, current_month.to_i + 1) - 1)]
-    transactions = SqlRunner.run(sql, values)
-    return nil if transactions == nil
-    return transactions.map { |transaction| Transaction.new(transaction)}
-  end
-
-  def Transaction.show_current_year()
-    current_year = Date.today.year
-    sql = "SELECT * FROM transactions
-    WHERE trans_date BETWEEN $1 AND $2
-    ORDER BY trans_date DESC;"
-    values = [Date.new(current_year), (Date.new(current_year + 1) - 1)]
-    transactions = SqlRunner.run(sql, values)
-    return nil if transactions == nil
-    return transactions.map { |transaction| Transaction.new(transaction)}
-  end
-
-  def Transaction.show_current_week()
-    current_week = Date.today.cweek
-    current_year = Date.today.year
-    sql = "SELECT * FROM transactions
-    WHERE trans_date BETWEEN $1 AND $2
-    ORDER BY trans_date DESC;"
-    values = [Date.commercial(current_year, current_week), (Date.commercial(current_year, current_week + 1) - 1)]
-    transactions = SqlRunner.run(sql, values)
-    return transactions.map {|transaction| Transaction.new(transaction)}
-  end
-
-  def Transaction.sum_all()
-    sql = "SELECT SUM(amount) FROM transactions;"
-    total = SqlRunner.run(sql)
-    return '%.2f' % total[0]['sum'].to_f
   end
 
   def Transaction.delete_all()

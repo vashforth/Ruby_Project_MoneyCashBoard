@@ -7,15 +7,14 @@ require('sinatra/contrib/all')
 require('pry-byebug')
 
 get '/my-money/budget/edit' do
-  @tags = Tag.show_all
   @budget = Budget.show_all
-  erb(:edit)
+  erb(:"budget/edit")
 end
 
 get '/my-money/transaction/:id/edit' do
   @tags = Tag.show_all
   @transaction = Transaction.find_by_id(params[:id].to_i)
-  erb(:transaction_edit)
+  erb(:"transactions/edit")
 end
 
 get '/my-money' do
@@ -35,31 +34,31 @@ get '/my-money' do
   @cmonth_total = Transaction.total_by_date(current_month_date, next_month_date).to_f
   @cyear_total = Transaction.total_by_date(current_year_date, next_year_date).to_f
   @budget = Budget.show_all
-  erb(:home)
+  erb(:"transactions/home")
 end
 
 get '/my-money/index' do
   @transactions = Transaction.show_all()
-  @total = Transaction.sum_all()
+  @total = Transaction.sum_by_transactions(@transactions)
   @tags = Tag.show_all()
-  erb(:index)
+  erb(:"transactions/index")
 end
 
 get '/my-money/:tag_id' do
   @tags = Tag.show_all()
   @transactions = Transaction.show_by_type(params[:tag_id])
-  @total = Transaction.sum_by_type(params[:tag_id])
-  erb(:show)
+  @total = Transaction.sum_by_transactions(@transactions)
+  erb(:"transactions/by_tag/show")
 end
 
 get '/my-money/:month/show-month' do
   @tags = Tag.show_all()
   @transactions = Transaction.show_by_month(params[:month])
   @total = Transaction.sum_by_transactions(@transactions)
-  erb(:dates)
+  erb(:"transactions/by_date/show")
 end
 
-get '/my-money/weekly/show' do
+get '/my-money/cweek/show' do
     current_week = Date.today.cweek
     current_year = Date.today.year
     current_week_date = Date.commercial(current_year, current_week)
@@ -67,10 +66,10 @@ get '/my-money/weekly/show' do
     @tags = Tag.show_all
     @transactions = Transaction.show_by_date(current_week_date, next_week_date)
     @total = Transaction.sum_by_transactions(@transactions)
-    erb(:"weekly/show")
+    erb(:"transactions/cweek/show")
 end
 
-get '/my-money/monthly/show' do
+get '/my-money/cmonth/show' do
     current_month = Date.today.month
     current_year = Date.today.year
     current_month_date = Date.new(current_year, current_month)
@@ -78,22 +77,22 @@ get '/my-money/monthly/show' do
     @tags = Tag.show_all
     @transactions = Transaction.show_by_date(current_month_date, next_month_date)
     @total = Transaction.sum_by_transactions(@transactions)
-    erb(:"monthly/show")
+    erb(:"transactions/cmonth/show")
 end
 
-get '/my-money/yearly/show' do
+get '/my-money/cyear/show' do
     current_year = Date.today.year
     current_year_date = Date.new(current_year)
     next_year_date = Date.new(current_year + 1) - 1
     @tags = Tag.show_all
     @transactions = Transaction.show_by_date(current_year_date, next_year_date)
     @total = Transaction.sum_by_transactions(@transactions)
-    erb(:"yearly/show")
+    erb(:"transactions/cyear/show")
 end
 
 get '/my-money/grouped-totals/show' do
-  @tags = Tag.show_all
-  erb(:"grouped-totals/show")
+  @tags = Tag.show_all()
+  erb(:"transactions/grouped-totals/show")
 end
 
 
@@ -107,6 +106,9 @@ post '/my-money' do
 end
 
 post '/my-money/:id/edit' do
+  merchant = Merchant.new(params)
+  merchant.save()
+  params['merchant_id'] = merchant.id
   transaction = Transaction.new(params)
   transaction.update()
   redirect to '/my-money/index'
