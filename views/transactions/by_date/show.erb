@@ -23,10 +23,10 @@
 <table class = "all">
   <thead>
     <tr>
-      <th class="type">Transaction Type</th>
-      <th class="merchant">Merchant</th>
-      <th class="amount">Amount</th>
-      <th class="date">Date</th>
+      <th class="type">Transaction Type &nbsp; <a class="arrow" href="/my-money/<%=@transactions[0].month%>/show-month/tag/up"> <i class="fas fa-arrow-up"></i></a> <a class="arrow" href="/my-money/<%=@transactions[0].month%>/show-month/tag/down"><i class="fas fa-arrow-down"></i></a> </th>
+      <th class="merchant">Merchant &nbsp; <a class="arrow" href="/my-money/<%= @transactions[0].month %>/show-month/merchant/up"> <i class="fas fa-arrow-up"></i></a> <a class="arrow"  href="/my-money/<%=@transactions[0].month %>/show-month/merchant/down"><i class="fas fa-arrow-down"></i></a></th>
+      <th class="amount">Amount &nbsp; <a class="arrow" href="/my-money/<%= @transactions[0].month %>/show-month/amount/up"> <i class="fas fa-arrow-up"></i></a> <a class="arrow" href="/my-money/<%= @transactions[0].month %>/show-month/amount/down"><i class="fas fa-arrow-down"></i></a></th>
+      <th class="date">Date &nbsp; <a class="arrow" href="/my-money/<%= @transactions[0].month %>/show-month/date/up"> <i class="fas fa-arrow-up"></i></a> <a class="arrow" href="/my-money/<%= @transactions[0].month %>/show-month/date/down"><i class="fas fa-arrow-down"></i></a></th>
       <th >Edit</th>
       <th class="delete">
         <form class="" action="/my-money/delete-all" method="post">

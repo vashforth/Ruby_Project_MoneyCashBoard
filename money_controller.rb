@@ -200,6 +200,71 @@ get '/my-money/:month/show-month' do
   erb(:"transactions/by_date/show")
 end
 
+
+get '/my-money/:month/show-month/date/up' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_date(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
+get '/my-money/:month/show-month/date/down' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_date(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
+get '/my-money/:month/show-month/amount/up' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_amount(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
+get '/my-money/:month/show-month/amount/down' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_amount(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
+get '/my-money/:month/show-month/merchant/up' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_merchant(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
+get '/my-money/:month/show-month/merchant/down' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_merchant(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
+get '/my-money/:month/show-month/tag/up' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_tag(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
+get '/my-money/:month/show-month/tag/down' do
+  @transactions_us = Transaction.show_by_month(params[:month])
+  @transactions = Transaction.order_by_tag(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_date/show")
+end
+
 get '/my-money/cweek/show' do
     current_week = Date.today.cweek
     current_year = Date.today.year
