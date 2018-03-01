@@ -108,6 +108,11 @@ button:hover {
   background-color: rgb(251, 70, 38)
 }
 
+a.arrow {
+  color: white;
+  text-decoration: none;
+}
+
 label {
   margin-left: 1.5em;
   padding-top: 8px;

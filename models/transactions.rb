@@ -78,6 +78,34 @@ class Transaction
     return transactions.map { |transaction| Transaction.new(transaction)  }
   end
 
+  def Transaction.order_by_amount(transactions, direction)
+    transactions_asc = transactions.sort_by {|transaction| transaction.amount }
+    transactions_desc = transactions_asc.reverse
+    return transactions_asc if direction == "asc"
+    return transactions_desc
+  end
+
+  def Transaction.order_by_merchant(transactions, direction)
+    transactions_asc = transactions.sort_by {|transaction| transaction.merchant }
+    transactions_desc = transactions_asc.reverse
+    return transactions_asc if direction == "asc"
+    return transactions_desc
+  end
+
+  def Transaction.order_by_date(transactions, direction)
+    transactions_asc = transactions.sort_by {|transaction| transaction.trans_date }
+    transactions_desc = transactions_asc.reverse
+    return transactions_asc if direction == "asc"
+    return transactions_desc
+  end
+
+  def Transaction.order_by_tag(transactions, direction)
+    transactions_asc = transactions.sort_by {|transaction| transaction.tag }
+    transactions_desc = transactions_asc.reverse
+    return transactions_asc if direction == "asc"
+    return transactions_desc
+  end
+
   def Transaction.show_by_type(id)
     sql = "SELECT * FROM transactions
     WHERE tag_id = $1

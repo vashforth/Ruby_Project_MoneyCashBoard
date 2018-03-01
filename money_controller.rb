@@ -44,10 +44,152 @@ get '/my-money/index' do
   erb(:"transactions/index")
 end
 
+get '/my-money/index' do
+  @transactions = Transaction.show_all()
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/date/up' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_date(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/date/down' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_date(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/amount/up' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_amount(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/amount/down' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_amount(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/merchant/up' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_merchant(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/merchant/down' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_merchant(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/tag/up' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_tag(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index/tag/down' do
+  @transactions_us = Transaction.show_all()
+  @transactions = Transaction.order_by_tag(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
+get '/my-money/index' do
+  @transactions = Transaction.show_all()
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/index")
+end
+
 get '/my-money/:tag_id' do
   @tags = Tag.show_all()
   @transactions = Transaction.show_by_type(params[:tag_id])
   @total = Transaction.sum_by_transactions(@transactions)
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/date/up' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_date(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/date/down' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_date(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/amount/up' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_amount(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/amount/down' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_amount(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/merchant/up' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_merchant(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/merchant/down' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_merchant(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/tag/up' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_tag(@transactions_us,'asc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
+  erb(:"transactions/by_tag/show")
+end
+
+get '/my-money/:tag_id/tag/down' do
+  @transactions_us = Transaction.show_by_type(params[:tag_id])
+  @transactions = Transaction.order_by_tag(@transactions_us,'desc')
+  @total = Transaction.sum_by_transactions(@transactions)
+  @tags = Tag.show_all()
   erb(:"transactions/by_tag/show")
 end
 
