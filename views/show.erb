@@ -60,9 +60,9 @@
           <a class="edit" href="/my-money/transaction/<%=transaction.id%>/edit"><i class="far fa-edit"></i></a>
         </td>
         <td>
-          <form class="button"  action="/my-money/all/<%=transaction.id%>/delete" method="post">
+          <form class="button"  action="/my-money/show/<%=transaction.id%>/delete" method="post">
             <input type="text" hidden name="tag_id" value="<%= transaction.tag_id %>" />
-            <input class="delete" type="submit" class="search" value=""><i class="fas fa-trash-alt"></i>
+            <button class="delete search" type="submit" ><i class="fas fa-trash-alt"></i></button>
           </form>
         </td>
 

@@ -1,13 +1,13 @@
 <form class="new" action="/my-money/budget/<%=@budget.id%>" method="post">
 
   <label for="weekly">Weekly: £</label>
-  <input id="weekly" type="text" name="weekly" value="<%=@budget.weekly%>" placeholder="Add budget here..." >
+  <input id="weekly" type="text" name="weekly" value="<%=@budget.weekly.to_i%>" placeholder="Add budget here..." >
 
   <label for="monthly">Monthly: £</label>
-  <input id="monthly" type="text" name="monthly" value="<%=@budget.monthly%>" placeholder="Add budget here..." >
+  <input id="monthly" type="text" name="monthly" value="<%=@budget.monthly.to_i%>" placeholder="Add budget here..." >
 
   <label for="yearly">Yearly: £</label>
-  <input id="yearly" type="text" name="yearly" value="<%=@budget.yearly%>" placeholder="Add budget here..." >
+  <input id="yearly" type="text" name="yearly" value="<%=@budget.yearly.to_i%>" placeholder="Add budget here..." >
 
   <input type="submit" value="Set New Budget">
 

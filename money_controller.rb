@@ -103,13 +103,24 @@ post '/my-money' do
   params['merchant_id'] = merchant.id
   transaction = Transaction.new(params)
   transaction.save()
-  redirect to '/my-money'
+  redirect to '/my-money/index'
+end
+
+post '/my-money/:id/edit' do
+  transaction = Transaction.new(params)
+  transaction.update()
+  redirect to '/my-money/index'
 end
 
 
 post '/my-money/show/:id/delete' do
   Transaction.delete_by_id(params[:id])
   redirect to "/my-money/#{params[:tag_id]}"
+end
+
+post '/my-money/dates/:id/delete' do
+  Transaction.delete_by_id(params[:id])
+  redirect to "/my-money/#{params[:month]}/show-month"
 end
 
 post '/my-money/all/:id/delete' do

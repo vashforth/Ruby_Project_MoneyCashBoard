@@ -2,11 +2,12 @@ require_relative('../db/sql_runner.rb')
 
 class Transaction
 
-  attr_reader :id, :amount, :merchant_id, :tag_id, :trans_date
-
+  attr_accessor  :amount, :merchant_id, :tag_id, :trans_date
+  attr_reader :id
+  
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @amount = options['amount'].to_f
+    @amount = options['amount']
     @merchant_id = options['merchant_id'].to_i
     @tag_id = options['tag_id'].to_i
     @trans_date = options['trans_date']
@@ -29,6 +30,22 @@ class Transaction
     @id = transaction[0]['id'].to_i
   end
 
+  def update()
+    sql = "UPDATE transactions
+    SET
+    (
+      amount,
+      merchant_id,
+      tag_id,
+      trans_date
+      )
+      =
+      ($1, $2, $3, $4)
+      WHERE id = $5;"
+      values = [@amount, @merchant_id, @tag_id, @trans_date, @id]
+      transaction = SqlRunner.run(sql, values)
+  end
+
   def tag()
     sql = "SELECT * FROM tags
     WHERE id = $1;"
@@ -41,6 +58,11 @@ class Transaction
     WHERE id = $1;"
     merchant = SqlRunner.run(sql, [@merchant_id])
     return merchant[0]['merchant_name']
+  end
+
+  def month()
+    month = @trans_date.split("-")[1].to_i
+    return month
   end
 
   def Transaction.delete_by_id(id)

@@ -87,6 +87,27 @@ form.button {
   margin-left: 0.75em;
 }
 
+button {
+  color: white;
+  border-radius: 5px;
+  width: fit-content;
+  display: inline-block;
+  text-decoration: none;
+  background-color: rgb(250, 158, 2);
+  text-align: center;
+  line-height: 100%;
+  color: white;
+  border-color: rgb(247, 236, 198) rgb(240, 222, 176) rgb(250, 158, 2);
+  border-style: solid;
+  border-width: 1px;
+  font-size: 12px;
+  padding: 4px 9px;
+}
+
+button:hover {
+  background-color: rgb(251, 70, 38)
+}
+
 label {
   margin-left: 1.5em;
   padding-top: 8px;
@@ -115,7 +136,7 @@ input[type=submit] {
 }
 
 input:hover[type=submit] {
-  background-color: rgb(177, 165, 138);
+  background-color: rgb(240, 222, 176);
 }
 
 input.delete:hover[type=submit] {
