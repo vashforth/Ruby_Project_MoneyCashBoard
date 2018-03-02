@@ -41,13 +41,7 @@ get '/my-money/index' do
   @transactions = Transaction.show_all()
   @total = Transaction.sum_by_transactions(@transactions)
   @tags = Tag.show_all()
-  erb(:"transactions/index")
-end
 
-get '/my-money/index' do
-  @transactions = Transaction.show_all()
-  @total = Transaction.sum_by_transactions(@transactions)
-  @tags = Tag.show_all()
   erb(:"transactions/index")
 end
 
@@ -330,6 +324,21 @@ end
 post '/my-money/dates/:id/delete' do
   Transaction.delete_by_id(params[:id])
   redirect to "/my-money/#{params[:month]}/show-month"
+end
+
+post '/my-money/cweek/show/:id/delete' do
+  Transaction.delete_by_id(params[:id])
+  redirect to "/my-money/cweek/show"
+end
+
+post '/my-money/cmonth/show/:id/delete' do
+  Transaction.delete_by_id(params[:id])
+  redirect to "/my-money/cmonth/show"
+end
+
+post '/my-money/cyear/show/:id/delete' do
+  Transaction.delete_by_id(params[:id])
+  redirect to "/my-money/cyear/show"
 end
 
 post '/my-money/all/:id/delete' do
