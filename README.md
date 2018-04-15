@@ -42,3 +42,12 @@ I successfully managed to meet all of the MVP objectives as well as the extensio
 
 *We were not allowed to use JavaScript for this project. Ruby/Sinatra does not lend itself well to adding front-end sorting functionality, however as this was our first project and my first time properly experimenting with front-end design and UX, I wanted to push the boundaries of Ruby functionality. As such the code, particularly in the controller file, is somewhat bulkier than necessary.
 
+## Screenshots
+
+#### Main Page
+
+![Screenshot](https://github.com/vashforth/Ruby_Project_MoneyCashBoard/blob/master/home_page_screenshot.png)
+
+#### All Transactions Page
+
+![Screenshot](https://github.com/vashforth/Ruby_Project_MoneyCashBoard/blob/master/all_trans_screenshot.png)
