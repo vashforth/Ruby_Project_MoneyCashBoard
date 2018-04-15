@@ -4,44 +4,31 @@
 
  <%if @cweek_total < @budget.weekly%>
  <div class= "total green">
-   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
-   <p class= "budget-text">My budget </p> <p class="budget"> £<%= @budget.weekly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
-   <a class="button" href="/my-money/cweek/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
- </div>
- <%else%>
-<div class= "total red">
-   <p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
-   <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.weekly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
-   <a class="button" href="/my-money/cweek/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
- </div>
+   <%else%>
+  <div class= "total red">
 <%end%>
+<p class= "total-text">My week spend</p> <p class="total">£<%= @cweek_total.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
+<p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.weekly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
+<a class="button" href="/my-money/cweek/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
+</div>
 
 <%if @cmonth_total < @budget.monthly%>
 <div class= "total green">
-  <p class= "total-text">My month spend</p><p class="total">£<%= @cmonth_total.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
-  <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
-  <a class="button" href="/my-money/cmonth/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
-</div>
 <%else%>
 <div class= "total red">
+  <%end%>
   <p class= "total-text">My month spend</p> <p class="total">£<%= @cmonth_total.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
   <p class= "budget-text">My budget</p> <p class="budget">£<%= @budget.monthly.to_i.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
   <a class="button" href="/my-money/cmonth/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
 </div>
-<%end%>
+
 
 <%if @cyear_total < @budget.yearly%>
 <div class= "total green">
-  <p class= "total-text">My year spend</p>  <p class="total">£<%= @cyear_total.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
-  <p class= "budget-text">My budget</p>  <p class="budget">£<%= @budget.yearly.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
-  <a class="button" href="/my-money/cyear/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
-</div>
 <%else%>
 <div class= "total red">
+  <%end%>
   <p class= "total-text">My year spend:</p> <p class="total">£<%= @cyear_total.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%></p>
   <p class= "budget-text">My budget:</p> <p class="budget">£<%= @budget.yearly.to_i.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse%> </p>
   <a class="button" href="/my-money/cyear/show"><i class="fas fa-shopping-cart"></i> &nbsp;View Transactions</a>
-</div>
-<%end%>
-
 </div>

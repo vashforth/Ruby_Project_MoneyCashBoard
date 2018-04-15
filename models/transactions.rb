@@ -78,6 +78,10 @@ class Transaction
     return transactions.map { |transaction| Transaction.new(transaction)  }
   end
 
+  def Transaction.order_by(trasactions, column)
+    transactions_sorted = transactions.sort_by {|transaction| transaction.column}
+  end
+
   def Transaction.order_by_amount(transactions, direction)
     transactions_asc = transactions.sort_by {|transaction| transaction.amount }
     transactions_desc = transactions_asc.reverse
